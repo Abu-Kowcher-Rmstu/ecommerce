@@ -1,0 +1,1 @@
+# Ecommerce project for 7th semester. 

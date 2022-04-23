@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--Carousel Wrapper-->
+  <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+      <!--First slide-->
+      <div class="carousel-item active">
+        <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+              <h1 class="mb-4">
+                <strong>Boi Mela Special</strong>
+              </h1>
+
+              <p>
+                <strong>Enjoy 20% discount on each book</strong>
+              </p>
+
+              <p class="mb-4 d-none d-md-block">
+                
+              </p>
+
+              <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">
+               Buy Now
+                <i class="fas fa-angle-double-down ml-2"></i>
+              </a>
+            </div>
+            <!-- Content -->
+
+          </div>
+          <!-- Mask & flexbox options-->
+
+        </div>
+      </div>
+      <!--/First slide-->
+
+      <!--Second slide-->
+      <div class="carousel-item">
+        <div class="view" style="background-image: url('./static/img/banner/discount.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+              <h1 class="mb-4">
+                <strong>Get Additional 25% discount on Nagad Payment</strong>
+              </h1>
+
+              <p>
+                <strong></strong>
+              </p>
+
+              <p class="mb-4 d-none d-md-block">
+        
+              </p>
+
+              <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Buy Now!
+  
+                <i class="fas fa-angle-double-down ml-2"></i>
+              </a>
+            </div>
+            <!-- Content -->
+
+          </div>
+          <!-- Mask & flexbox options-->
+
+        </div>
+      </div>
+      <!--/Second slide-->
+
+      <!--Third slide-->
+      <div class="carousel-item">
+        <div class="view" style="background-image: url('./static/img/slider/website-banner.png'); background-repeat: no-repeat; background-size: cover;">
+
+          
+
+        </div>
+      </div>
+      <!--/Third slide-->
+
+    </div>
+    <!--/.Slides-->
+
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+
+  </div>
+
+<main>
+    <div class="container">
+
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+        <!-- Navbar brand -->
+        <span class="navbar-brand">Categories:</span>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">All
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+        
+           
+           
+
+            <!--drop down start-->
+            <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Subjects</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          {% for category in categories %}
+          <a class="dropdown-item" href="{% url 'ebookshop:product
+          ' %}">{{category.name}}</a>
+          {% endfor %}
+          
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Writers</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          {% for author in authors %}
+          <a class="dropdown-item" href="#">{{author.name}}</a>
+          {% endfor %}
+          
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Best Seller</a>
+      </li>
+      <!--dropdown end-->
+
+          </ul>
+          <!-- Links -->
+
+        </div>
+        <!-- Collapsible content -->
+
+      </nav>
+      <!--/.Navbar-->
+
+      <!--Section: Products v.3-->
+      <section class="text-center mb-4">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          {% for product in products %}
+
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card image-->
+              <div class="product-card">
+                <div class="product-image">
+                  {% if product.discount %}
+                  <span class="discount-tag badge badge-pill danger-color">{{product.discount}}% Off</span>
+                  {% endif %}
+                  {% if product.tag %}
+                  <span class="product-tag badge badge-pill success-color"> {{product.tag}} </span>
+                  {% endif %}
+                  
+                  {% if product.image %}
+                  <img src="{{ product.image.url}}" class="img-fluid" alt="">
+                  {% else %}
+                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="img-fluid" alt="">
+                  {% endif %}
+                  <button data-product={{product.id}} data-action ="add" class="card-btn update-cart"> Add to cart </button>
+                  
+              </div>
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <p>
+                  <strong>
+                    <a href="" class="dark-grey-text">
+                      {{ product.name }}
+                    </a>
+  
+                  </strong>
+  
+  
+                </p>
+                
+               
+                <p>
+                  
+                    <a href="" class="grey-text"> {{product.author}}
+                    </a>
+  
+                <p>
+  
+  
+                <h4 class="font-weight-bold blue-text">
+                  <strong>{{product.price}} BDT</strong>
+                </h4>
+  
+              </div>
+              <!--Card content-->
+                
+              </div>
+        
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+          </div>
+         
+          {% endfor %}
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Products v.3-->
+
+      <section>
+        <div class="container mt-4">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h4>Product list </h4>
+            </div>
+          </div>
+        </div>
+        <div class="container mt-3">
+          <div class="row">
+            <div class="owl-carousel owl-theme">
+              {% for product in products %}
+              <div class="item">
+                <div class="card">
+                  <div class="product-card">
+                  <!--Card image experiment-->
+                    <div class="product-image ">
+                      {% if product.discount %}
+                      <span class="discount-tag badge badge-pill danger-color">{{product.discount}}% Off</span>
+                      {% endif %}
+                      {% if product.tag %}
+                      <span class="product-tag badge badge-pill success-color"> {{product.tag}} </span>
+                      {% endif %}
+                      {% if product.image %}
+                      <img src="{{ product.image.url}}" class="thumbnail" alt="">
+                      {% else %}
+                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="img-fluid" alt="">
+                      {% endif %}
+                
+                      <button  data-product={{product.id}} data-action ="add" class="card-btn update-cart"> Add to Cart </button>
+                    </div>
+                  <!--Card image-->
+                  
+                  <!--Card content-->
+                  <div class="card-body text-center ">
+                  <!--Category & Title-->
+                  <p>
+                    <strong>
+                      <a href="" class="dark-grey-text">
+                        {{ product.name }}
+                      </a>
+                    </strong>
+                  </p>
+                  
+                  <p>
+                      <a href="" class="grey-text"> {{product.author}}
+                      </a>
+                  <p>
+
+                  <h4 class="font-weight-bold blue-text">
+                    <strong>{{product.price}} BDT</strong>
+                  </h4>
+
+                  </div>
+              
+      
+                  </div>  
+                  
+                </div>
+               </div>
+               {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Pagination-->
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+
+          <!--Arrow left-->
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          <li class="page-item active">
+            <a class="page-link" href="#">1
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">5</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!--Pagination-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+{% endblock content %}
