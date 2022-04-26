@@ -148,8 +148,7 @@
           aria-haspopup="true" aria-expanded="false">Subjects</a>
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           {% for category in categories %}
-          <a class="dropdown-item" href="{% url 'ebookshop:product
-          ' %}">{{category.name}}</a>
+          <a class="dropdown-item" href="{% url 'ebookshop:product' %}">{{category.name}}</a>
           {% endfor %}
           
         </div>
