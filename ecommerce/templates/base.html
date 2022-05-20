@@ -219,13 +219,13 @@ console.log('Cart:', cart)
                 <a class="dropdown-item waves-effect waves-light" href="#">My acoount</a>
                 <a class="dropdown-item waves-effect waves-light" href="#">My orders</a>
                 <a class="dropdown-item waves-effect waves-light" href="#">My Wishlist</a>
-                <a class="dropdown-item waves-effect waves-light" href="#">logout</a>
+                <a class="dropdown-item waves-effect waves-light" href="{% url 'ebookshop:logout' %}">logout</a>
                 
               </div>
             </li>
             {% else %}
              </li class="nav-item">
-                <a class="nav-link waves-effect" href="#"> login</a>
+                <a class="nav-link waves-effect" href="{% url 'ebookshop:login' %}"> login</a>
             </li>
             {% endif %}
         </ul>

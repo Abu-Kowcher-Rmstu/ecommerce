@@ -1,10 +1,64 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse,JsonResponse
 import json
 import datetime
 from . models import *
 from . utils import cookieCart,cartData,guestOrder
+from django.contrib.auth import login,authenticate,logout 
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.contrib import messages
+from . forms import NewUserForm
 # Create your views here.
+def registerPage(request):
+  
+    if request.method == 'POST':
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user=form.save() 
+          
+            user.save() 
+            name = form.cleaned_data.get('full_name')
+            email = user.email
+            customer= Customer.objects.create(user=user,name =name,email=email,)
+            
+            customer.save() 
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+
+            return redirect('ebookshop:home') 
+    else:
+        form =NewUserForm() 
+    
+    return render(request,'registration/register.html',{'form':form})
+
+
+def loginPage(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username= username, password=password)
+            if user is not None:
+                login(request,user)
+                messages.info(request,f"You are now logged in as {username}.")
+                
+                return redirect("ebookshop:home")
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request,'registration/login.html',{'form':form}) 
+                
+   
+def logoutpage(request): 
+    logout(request)
+    messages.info(request,"you have successfully logged out.")
+    return redirect("ebookshop:home")
+
+
 def home(request): 
     product_list = Products.objects.all()
     category_list = Category.objects.all()

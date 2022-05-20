@@ -3,11 +3,24 @@ from email.policy import default
 from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.forms import BooleanField
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
+"""class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
 
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()"""
+
+
+	
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
