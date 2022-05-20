@@ -1,6 +1,7 @@
 <h2>Login</h2>
-<form method="post">
+<form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Login</button>
 </form>
+<p class="textcenter">Don't have an account? <a href="{% url 'ebookshop:register' %}">create an account</a></p>
