@@ -1,7 +1,29 @@
-<h3>registration page ...</h3>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">sign up</button>
-</form>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 ">
+ <div class="row d-flex justify-content-center" style="margin-top: 5rem;">
+   <div class="col-md-6">
+     <div class="box-element">
+  
+      <h2>Sign up </h2>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <hr>
+			<input id="form-button" class="btn btn-success btn-block" type="submit" value="Sign up">
+    </form>
+    <p class="textcenter">Don't have an account? <a href="{% url 'ebookshop:register' %}">create an account</a></p>
+     </div>
+   </div>
+
+
+
+ </div>
+
+</div>
+
+
+{% endblock content %}
