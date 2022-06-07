@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section>
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h4>Product list </h4>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-3">
+             <!--Grid row-->
+             {% if products %}
+             <div class="row wow fadeIn">
+
+                {% for product in products %}
+      
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4">
+      
+                  <!--Card-->
+                  <div class="card">
+      
+                    <!--Card image-->
+                    <div class="product-card">
+                      <div class="product-image">
+                        {% if product.discount %}
+                        <span class="discount-tag badge badge-pill danger-color">{{product.discount}}% Off</span>
+                        {% endif %}
+                        {% if product.tag %}
+                        <span class="product-tag badge badge-pill success-color"> {{product.tag}} </span>
+                        {% endif %}
+                        
+                        {% if product.image %}
+                        <img src="{{ product.image.url}}" class="img-fluid" alt="">
+                        {% else %}
+                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="img-fluid" alt="">
+                        {% endif %}
+                        <button data-product={{product.id}} data-action ="add" class="card-btn update-cart"> Add to cart </button>
+                        
+                    </div>
+                    <div class="card-body text-center">
+                      <!--Category & Title-->
+                      <p>
+                        <strong>
+                          <a href="" class="dark-grey-text">
+                            {{ product.name }}
+                          </a>
+        
+                        </strong>
+        
+        
+                      </p>
+                      
+                     
+                      <p>
+                        
+                          <a href="" class="grey-text"> {{product.author}}
+                          </a>
+        
+                      <p>
+        
+        
+                      <h4 class="font-weight-bold blue-text">
+                        <strong>{{product.price}} BDT</strong>
+                      </h4>
+        
+                    </div>
+                    <!--Card content-->
+                      
+                    </div>
+              
+                    <!--Card content-->
+      
+                  </div>
+                  <!--Card-->
+      
+                </div>
+               
+                {% endfor %}
+      
+              </div>
+              {% else %}
+              <h1>no product found </h1>
+
+              {% endif %}
+    </div>
+  </section>
+{% endblock content%}

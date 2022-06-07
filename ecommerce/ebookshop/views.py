@@ -8,6 +8,7 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib import messages
 from . forms import NewUserForm
+from django.db.models import Q
 # Create your views here.
 def registerPage(request):
   
@@ -32,6 +33,27 @@ def registerPage(request):
     
     return render(request,'registration/register.html',{'form':form})
 
+def search(request):
+    Data = cartData(request)
+    cartItems = Data['cartItems']
+    if request.method == 'GET':
+        query = request.GET.get('search')
+        lookups= Q(name__icontains=query) | Q(tag__icontains=query) | Q(author__name__icontains=query) 
+        try:
+            status = Products.objects.filter(lookups)
+            #status = Products.objects.filter(name__icontains = query)
+            return render(request,'searchresult.html',{"products":status,
+            "cartItems":cartItems
+            })
+        except:
+            return render(request,'searchresult.html',{"cartItems":cartItems} )
+
+    else:
+        return render(request,'searchresult.html',{"cartItems":cartItems} ) 
+
+
+
+    
 
 def loginPage(request):
     if request.method == "POST":
@@ -86,6 +108,16 @@ def product(request):
         'cartItems':cartItems
     })
 
+def category(request,name):
+     lookups= Q(category__name__icontains=name) |Q(author__name__icontains=name)
+     product_list = Products.objects.filter(lookups) 
+     Data = cartData(request)
+     cartItems = Data['cartItems']
+     return render(request,"category.html",
+    {
+        'products':product_list,
+        'cartItems':cartItems
+    })
 def cart(request):
     Data = cartData(request)
     items = Data['items']
@@ -160,4 +192,4 @@ def processOrder(request):
             state = data['shipping']['state'],
             zipcode = data['shipping']['zipcode']
         )
-    return JsonResponse('payment completed', safe= False)
+    return JsonResponse('payment completed', safe= False) 

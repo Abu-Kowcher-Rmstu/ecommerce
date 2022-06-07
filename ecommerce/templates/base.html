@@ -178,8 +178,8 @@ console.log('Cart:', cart)
         <ul class="navbar-nav mr-auto ml-auto">
           <li class="nav-item">
             <div class="justify-content-md-center">
-              <form class="form-inline " id="navBarSearchForm">
-                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+              <form class="form-inline " id="navBarSearchForm" name = "searchform" method ="GET", action ={% url 'ebookshop:search' %}>
+                <input class="form-control form-control-sm mr-3 w-75" type="text" name ="search" placeholder="Search"
                    aria-label="Search">
                 <i class="fas fa-search" aria-hidden="true"></i>
               </form>

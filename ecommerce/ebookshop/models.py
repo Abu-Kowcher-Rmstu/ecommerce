@@ -26,6 +26,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    @property
+    def get_products(self):
+        return Products.objects.filter(category__name=self.name)
 
 
 class Author(models.Model):
@@ -34,6 +37,8 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
+     		
 
 
 class Products(models.Model):

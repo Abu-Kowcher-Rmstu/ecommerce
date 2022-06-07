@@ -133,7 +133,7 @@
           <!-- Links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">All
+              <a class="nav-link" href="{% url 'ebookshop:product' %}">All
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -148,7 +148,7 @@
           aria-haspopup="true" aria-expanded="false">Subjects</a>
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           {% for category in categories %}
-          <a class="dropdown-item" href="{% url 'ebookshop:product' %}">{{category.name}}</a>
+          <a class="dropdown-item" href="{% url 'ebookshop:category' name=category.name %}">{{category.name}}</a>
           {% endfor %}
           
         </div>
@@ -158,7 +158,7 @@
           aria-haspopup="true" aria-expanded="false">Writers</a>
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           {% for author in authors %}
-          <a class="dropdown-item" href="#">{{author.name}}</a>
+          <a class="dropdown-item" href="{% url 'ebookshop:category' name=author.name %}">{{author.name}}</a>
           {% endfor %}
           
         </div>
