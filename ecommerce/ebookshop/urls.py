@@ -16,6 +16,7 @@ urlpatterns = [
     path('login/',views.loginPage, name='login'),
     path('logout/',views.logoutpage,name='logout' ), 
     url(r'^search/$',views.search, name='search'),
+    path('myorder', views.orderlist, name = 'orderlist'),
 
 
 ]

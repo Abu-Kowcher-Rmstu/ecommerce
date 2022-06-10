@@ -130,3 +130,7 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#ssl commerz credential
+store_id = 'ebook62a2d7bb915c5'
+store_pass = 'ebook62a2d7bb915c5@ssl'
