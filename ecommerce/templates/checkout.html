@@ -46,9 +46,14 @@
 			
 			<div class="box-element hidden " id="payment-info">
 				<small>Payment Options</small>
-				<button id="make-payment">Make Payment</button>
-			</div>
+				
+				<div id="paypal-button-container"></div>
+				<!--<button id="make-payment">Make Payment</button>-->
 			
+				<button id="COD" class="btn btn-success btn-block-rounded">Cash on Delivery</button>
+				<button id="ssl" class="btn btn-success btn-block-rounded">SSLcommerz</button>
+				</div>
+		
 		</div>
 
 		<div class="col-lg-6">
@@ -72,6 +77,53 @@
 	</div>
 </div>
 
+<!--	paypal script -->
+<script src="https://www.paypal.com/sdk/js?client-id=AcR6pQf1XKNS4YdtEXagrpcH-gV9upR7ZZ6IkpYvoEpspPHDF6FbAc-alRfoQkpgnWdwV8G8fsMUyPPg&currency=USD&disable-funding=credit,venmo"></script>
+<script>
+	var total = '{{order.get_cart_total}}'
+	total = total/80
+// Render the PayPal button into #paypal-button-container
+paypal.Buttons({
+	
+	style: {
+				color:  'blue',
+				shape:  'pill',
+				label:  'pay',
+				height: 40
+			},
+	// Set up the transaction
+	createOrder: function(data, actions) {
+		return actions.order.create({
+			purchase_units: [{
+				amount: {
+					value: parseFloat(total).toFixed(2) 
+				}
+			}]
+		});
+	},
+
+	// Finalize the transaction
+	onApprove: function(data, actions) {
+		return actions.order.capture().then(function(orderData) {
+			submitFormData() 
+			// Successful capture! For demo purposes:
+			//console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+			//var transaction = orderData.purchase_units[0].payments.captures[0];
+			//alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+			
+
+			// Replace the above to show a success message within this page, e.g.
+			// const element = document.getElementById('paypal-button-container');
+			// element.innerHTML = '';
+			// element.innerHTML = '<h3>Thank you for your payment!</h3>';
+			// Or go to another URL:  actions.redirect('thank_you.html');
+		});
+	}
+
+
+}).render('#paypal-button-container');
+</script>
+
 <script type="text/javascript">
 	var total = '{{order.get_cart_total}}'	
 
@@ -85,10 +137,11 @@
 		document.getElementById('form-button').classList.add('hidden')
 		document.getElementById('payment-info').classList.remove('hidden')
 	})
-
-	document.getElementById('make-payment').addEventListener('click',function(e){
+	//cash on delivery options
+	document.getElementById('COD').addEventListener('click',function(e){
 		submitFormData()
 	})
+	
 	function submitFormData(){
 		console.log('payment button clicked')
 		var userFormData = {

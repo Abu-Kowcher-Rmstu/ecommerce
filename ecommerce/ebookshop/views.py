@@ -80,7 +80,18 @@ def logoutpage(request):
     messages.info(request,"you have successfully logged out.")
     return redirect("ebookshop:home")
 
+def orderlist(request):
+    orderlist = Order.objects.filter(customer__user=request.user,complete=True)
+    return render(request,"orderlist.html",{"orderlist":orderlist})
 
+
+def order_details(request,order_id):
+    order = Order.objects.filter(id = order_id)
+    items = OrderItem.objects.filter(order__id = order_id)
+    return render(request,"order_details.html",{
+    "order":order, 
+    "items":items,
+    })
 def home(request): 
     product_list = Products.objects.all()
     category_list = Category.objects.all()

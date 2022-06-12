@@ -1,0 +1,54 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+	<div class="row " style="margin-top: 5rem;">
+		<div class="col-lg-12">
+			<div class="box-element">
+				<div class="cart-row">
+					
+					<div style="flex:1"><strong>order id</strong></div>
+					<div style="flex:1"><strong>Date</strong></div>
+					
+					<div style="flex:1"><strong>Status</strong></div>
+				</div>
+				{% for order in orderlist %}
+				<div class="cart-row">
+					<!--<div style="flex:2"><img class="row-image" src="{{item.product.image.url}}"></div>-->
+					<div style="flex:1"><p><a href="{% url 'ebookshop:orderdetails' order_id=order.id %}">{{order.id}}</a></p></div>
+					<div style="flex:1"><p>{{order.date_ordered}}</p></div>
+                   
+					<div style="flex:1">
+                        {% if order.status == '5' %} <p>processing</p>
+						{% elif order.status == '1' %} <p>pacakge being prepared</p>
+                        {% elif order.status == '2' %} <p>shipping</p>
+                        {% elif order.status == '3' %} <p>shipped</p>
+                        {% elif order.status == '4' %} <p>delivered</p>
+
+                        
+                        {% endif %}
+						<!--<div class="quantity">
+							<img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'img/arrow-up.png' %}">
+					
+							<img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'img/arrow-down.png' %}">
+						</div> -->
+					</div>
+				
+				</div>
+
+				{% endfor %}
+
+				
+				
+
+			</div>
+		</div>
+	</div>
+
+
+</div>
+	
+{% endblock content %}
