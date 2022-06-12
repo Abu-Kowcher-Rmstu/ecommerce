@@ -213,7 +213,7 @@
                 <!--Category & Title-->
                 <p>
                   <strong>
-                    <a href="" class="dark-grey-text">
+                    <a href="{% url 'ebookshop:bookdetails' bookId=product.id %}" class="dark-grey-text">
                       {{ product.name }}
                     </a>
   
@@ -225,7 +225,7 @@
                
                 <p>
                   
-                    <a href="" class="grey-text"> {{product.author}}
+                    <a href="{% url 'ebookshop:bookdetails' bookId=product.id %}" class="grey-text"> {{product.author}}
                     </a>
   
                 <p>

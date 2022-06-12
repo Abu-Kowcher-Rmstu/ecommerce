@@ -92,6 +92,11 @@ def order_details(request,order_id):
     "order":order, 
     "items":items,
     })
+
+def book_details(request,bookId):
+    product = Products.objects.get(id=bookId)
+    return render(request,'bookdetails.html',{"product":product}) 
+
 def home(request): 
     product_list = Products.objects.all()
     category_list = Category.objects.all()

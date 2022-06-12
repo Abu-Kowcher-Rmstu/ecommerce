@@ -81,7 +81,7 @@
 <script src="https://www.paypal.com/sdk/js?client-id=AcR6pQf1XKNS4YdtEXagrpcH-gV9upR7ZZ6IkpYvoEpspPHDF6FbAc-alRfoQkpgnWdwV8G8fsMUyPPg&currency=USD&disable-funding=credit,venmo"></script>
 <script>
 	var total = '{{order.get_cart_total}}'
-	total = total/80
+	//total = total/80
 // Render the PayPal button into #paypal-button-container
 paypal.Buttons({
 	
@@ -96,7 +96,7 @@ paypal.Buttons({
 		return actions.order.create({
 			purchase_units: [{
 				amount: {
-					value: parseFloat(total).toFixed(2) 
+					value: parseFloat(total/80).toFixed(2) 
 				}
 			}]
 		});

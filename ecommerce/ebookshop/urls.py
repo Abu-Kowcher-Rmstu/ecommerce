@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^search/$',views.search, name='search'),
     path('myorder/', views.orderlist, name = 'orderlist'),
     path('orderdetails/<int:order_id>',views.order_details, name='orderdetails'),
+    path('details/<int:bookId>',views.book_details, name ='bookdetails'),
 
 
 ]
